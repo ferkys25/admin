@@ -1,0 +1,33 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+
+class Periodo extends Model
+{
+    use HasFactory;
+
+    protected $table = 'periodos';
+
+    protected $fillable = [
+        'nombre',
+        'fecha_inicio',
+        'fecha_fin',
+    ];
+
+    protected function casts(): array
+    {
+        return [
+            'fecha_inicio' => 'date',
+            'fecha_fin' => 'date',
+        ];
+    }
+
+    public function paralelos(): HasMany
+    {
+        return $this->hasMany(Paralelo::class);
+    }
+}
